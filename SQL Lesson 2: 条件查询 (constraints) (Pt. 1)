@@ -16,3 +16,28 @@ Movies
 | 12 | Cars 2              | John Lasseter   | 2011 | 120            |
 | 13 | Brave               | Brenda Chapman  | 2012 | 102            |
 | 14 | Monsters University | Dan Scanlon     | 2013 | 110            |
+
+REQUIREMENTS:
+1.【简单条件】找到id为6的电影
+  SELECT * 
+  FROM Movies
+  WHERE id = 6
+2.【简单条件】找到在2000-2010年间year上映的电影
+  SELECT *
+  FROM Movies
+  WHERE Year BETWEEN 2000 AND 2010
+3.【简单条件】找到不是在2000-2010年间year上映的电影
+  SELECT *
+  FROM Movies
+  WHERE Year NOT BETWEEN 2000 AND 2010
+4.【简单条件】找到头5部电影
+  SELECT * 
+  FROM Movies
+  ORDER BY Year 
+  LIMIT 5
+5.【简单条件】找到2010（含）年之后的电影里片长小于两个小时的片子
+  SELECT *
+  FROM Movies
+  WHERE 
+  Length_minutes < 120 
+  AND Year >= 2010
