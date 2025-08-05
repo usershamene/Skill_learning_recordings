@@ -1,0 +1,46 @@
+TABLE:
+Employees:
+| Role    | Name      | Building | Years_employed |
+|---------|-----------|----------|----------------|
+| Engineer| Becky A.  | 1e       | 4              |
+| Engineer| Dan B.    | 1e       | 2              |
+| Engineer| Sharon F. | 1e       | 6              |
+| Engineer| Dan M.    | 1e       | 4              |
+| Engineer| Malcom S. | 1e       | 1              |
+| Artist  | Tylar S.  | 2w       | 2              |
+| Artist  | Sherman D.| 2w       | 8              |
+| Artist  | Jakob J.  | 2w       | 6              |
+| Artist  | Lillia A. | 2w       | 7              |
+| Artist  | Brandon J.| 2w       | 7              |
+| Manager | Scott K.  | 1e       | 9              |
+| Manager | Shirlee M.| 1e       | 3              |
+| Manager | Daria O.  | 2w       | 6              |
+| Engineer| Yancy I.  | null     | 0              |
+| Artist  | Oliver P. | null     | 0              |
+
+REQUIREMENTS:
+1.【统计】统计一下Artist角色的雇员数量
+  SELECT COUNT(*)
+  FROM Employees
+  WHERE Role = 'Artist'
+2.【分组】按角色统计一下每个角色的雇员数量  
+  SELECT Role,COUNT(*)
+  FROM Employees
+  GROUP BY Role
+3.【分组】算出Engineer角色的就职年份总计
+  SELECT SUM(Years_employed)
+  FROM Employees
+  WHERE ROLE = 'Engineer'
+4.【难题】按角色分组算出每个角色按有办公室和没办公室的统计人数
+(列出角色，数量，有无办公室,注意一个角色如果部分有办公室，部分没有需分开统计）
+  SELECT 
+  Role,
+  COUNT(*),
+  CASE 
+  WHEN Building IS NULL
+    THEN 0
+    ELSE 1
+  END AS has_office
+  FROM Employees
+  GROUP BY Role,has_office
+  
