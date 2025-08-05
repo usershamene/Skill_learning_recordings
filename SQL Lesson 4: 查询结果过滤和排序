@@ -1,0 +1,47 @@
+TABLE:
+Movies:
+| Id  | Title               | Director        | Year | Length_minutes |
+|-----|---------------------|-----------------|------|----------------|
+| 1   | Toy Story           | John Lasseter   | 1995 | 81             |
+| 2   | A Bug's Life        | John Lasseter   | 1998 | 95             |
+| 3   | Toy Story 2         | John Lasseter   | 1999 | 93             |
+| 4   | Monsters, Inc.      | Pete Docter     | 2001 | 92             |
+| 5   | Finding Nemo        | Finding Nemo    | 2003 | 107            |
+| 6   | The Incredibles     | Brad Bird       | 2004 | 116            |
+| 7   | Cars                | John Lasseter   | 2006 | 117            |
+| 8   | Ratatouille         | Brad Bird       | 2007 | 115            |
+| 9   | WALL-E              | Andrew Stanton  | 2008 | 104            |
+| 10  | Up                  | Pete Docter     | 2009 | 101            |
+| 11  | Toy Story 3         | Lee Unkrich     | 2010 | 103            |
+| 12  | Cars 2              | John Lasseter   | 2011 | 120            |
+| 13  | Brave               | Brenda Chapman  | 2012 | 102            |
+| 14  | Monsters University | Dan Scanlon     | 2013 | 110            |
+
+REQUIREMENTS:
+1.【结果排序】按导演名排重列出所有电影(只显示导演)，并按导演名正序排列
+  SELECT DISTINCT(Director)
+  FROM Movies
+  ORDER BY Director DESC
+2.【结果排序】列出按上映年份最新上线的4部电影
+  SELECT * 
+  FROM Movies
+  ORDER BY Year DESC
+  LIMIT 4
+3.【结果排序】按电影名字母序升序排列，列出前5部电影
+  SELECT * 
+  FROM Movies
+  ORDER BY Title 
+  LIMIT 5
+4.【结果排序】按电影名字母序升序排列，列出上一题之后的5部电影
+  SELECT * 
+  FROM Movies
+  ORDER BY Title 
+  LIMIT 5 
+  OFFSET 5
+5.【结果排序】如果按片长排列，John Lasseter导演导过片长第3长的电影是哪部，列出名字即可
+  SELECT Title
+  FROM Movies
+  WHERE Director = 'John Lasseter'
+  ORDER BY Length_minutes DESC
+  LIMIT 1
+  OFFSET 2
