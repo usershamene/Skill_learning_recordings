@@ -1,0 +1,38 @@
+TABIE:
+Employees:
+| Role    | Name      | Building | Years_employed |
+|---------|-----------|----------|----------------|
+| Engineer| Becky A.  | 1e       | 4              |
+| Engineer| Dan B.    | 1e       | 2              |
+| Engineer| Sharon F. | 1e       | 6              |
+| Engineer| Dan M.    | 1e       | 4              |
+| Engineer| Malcom S. | 1e       | 1              |
+| Artist  | Tylar S.  | 2w       | 2              |
+| Artist  | Sherman D.| 2w       | 8              |
+| Artist  | Jakob J.  | 2w       | 6              |
+| Artist  | Lillia A. | 2w       | 7              |
+| Artist  | Brandon J.| 2w       | 7              |
+| Manager | Scott K.  | 1e       | 9              |
+| Manager | Shirlee M.| 1e       | 3              |
+| Manager | Daria O.  | 2w       | 6              |
+| Engineer| Yancy I.  | null     | 0              |
+| Artist  | Oliver P. | null     | 0              |
+
+REQUIREMENTS:
+1.【统计】找出就职年份最高的雇员(列出雇员名字+年份）
+  SELECT Name,MAX(Years_employed)
+  FROM Employees
+2.【分组】按角色(Role)统计一下每个角色的平均就职年份
+  SELECT Role,AVG(Years_employed)
+  FROM Employees
+  GROUP BY Role
+3.【分组】按办公室名字总计一下就职年份总和
+  SELECT Building,SUM(Years_employed)
+  FROM Employees
+  GROUP BY Building
+4.【难题】每栋办公室按人数排名,不要统计无办公室的雇员
+  SELECT Building,COUNT(*)
+  FROM Employees
+  WHERE Building NOT NULL
+  GROUP BY Building
+  ORDER BY COUNT(*)
