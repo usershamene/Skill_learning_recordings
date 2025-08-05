@@ -1,0 +1,66 @@
+TABLE:
+Movies:
+| Id  | Title               | Director        | Year | Length_minutes |
+|-----|---------------------|-----------------|------|----------------|
+| 1   | Toy Story           | John Lasseter   | 1995 | 81             |
+| 2   | A Bug's Life        | John Lasseter   | 1998 | 95             |
+| 3   | Toy Story 2         | John Lasseter   | 1999 | 93             |
+| 4   | Monsters, Inc.      | Pete Docter     | 2001 | 92             |
+| 5   | Finding Nemo        | Finding Nemo    | 2003 | 107            |
+| 6   | The Incredibles     | Brad Bird       | 2004 | 116            |
+| 7   | Cars                | John Lasseter   | 2006 | 117            |
+| 8   | Ratatouille         | Brad Bird       | 2007 | 115            |
+| 9   | WALL-E              | Andrew Stanton  | 2008 | 104            |
+| 10  | Up                  | Pete Docter     | 2009 | 101            |
+| 11  | Toy Story 3         | Lee Unkrich     | 2010 | 103            |
+| 12  | Cars 2              | John Lasseter   | 2011 | 120            |
+| 13  | Brave               | Brenda Chapman  | 2012 | 102            |
+| 14  | Monsters University | Dan Scanlon     | 2013 | 110            |
+
+Boxoffice:
+| Movie_id | Rating | Domestic_sales | International_sales |
+|----------|--------|----------------|----------------------|
+| 5        | 8.2    | 380843261      | 555900000            |
+| 14       | 7.4    | 268492764      | 475066843            |
+| 8        | 8      | 206445654      | 417277164            |
+| 12       | 6.4    | 191452396      | 368400000            |
+| 3        | 7.9    | 245852179      | 239163000            |
+| 6        | 8      | 261441092      | 370001000            |
+| 9        | 8.5    | 223808164      | 297503696            |
+| 11       | 8.4    | 415004880      | 648167031            |
+| 1        | 8.3    | 191796233      | 170162503            |
+| 7        | 7.2    | 244082982      | 217900167            |
+| 10       | 8.3    | 293004164      | 438338580            |
+| 4        | 8.1    | 289916256      | 272900000            |
+| 2        | 7.2    | 162798565      | 200600000            |
+| 13       | 7.2    | 237283207      | 301700000            |
+
+REQUIREMENTS:
+1.【计算】列出所有的电影ID,名字和销售总额(以百万美元为单位计算)
+  SELECT A.Id,A.Title,(B.Domestic_sales + International_sales)/1000000 AS '销售总额(百万美元)'
+  FROM Movies AS A
+  LEFT JOIN 
+  Boxoffice AS B
+  ON A.Id = B.Movie_id
+2.【计算】列出所有的电影ID,名字和市场指数(Rating的10倍为市场指数)
+  SELECT A.Id,A.Title,B.Rating * 10 AS '市场指数'
+  FROM Movies AS A
+  LEFT JOIN 
+  Boxoffice AS B
+  ON A.Id = B.Movie_id
+3.【计算】列出所有偶数年份的电影，需要电影ID,名字和年份
+  SELECT A.Id,A.Title,Year
+  FROM Movies AS A
+  LEFT JOIN 
+  Boxoffice AS B
+  ON A.Id = B.Movie_id
+  WHERE Year%2 IS 0
+4.【难题】John Lasseter导演的每部电影每分钟值多少钱,告诉我最高的3个电影名和价值就可以
+  SELECT A.Title,(B.Domestic_sales + B.International_sales)/A.Length_minutes AS '价值(美元/分)'
+  FROM Movies AS A
+  LEFT JOIN 
+  Boxoffice AS B
+  ON A.Id = B.Movie_id
+  WHERE A.Director = 'John Lasseter'
+  ORDER BY "价值(美元/分)" DESC
+  LIMIT 3
