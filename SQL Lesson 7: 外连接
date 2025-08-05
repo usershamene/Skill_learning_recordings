@@ -1,0 +1,46 @@
+TABLE:
+Employees:
+| Role    | Name      | Building | Years_employed |
+|---------|-----------|----------|----------------|
+| Engineer| Becky A.  | 1e       | 4              |
+| Engineer| Dan B.    | 1e       | 2              |
+| Engineer| Sharon F. | 1e       | 6              |
+| Engineer| Dan M.    | 1e       | 4              |
+| Engineer| Malcom S. | 1e       | 1              |
+| Artist  | Tylar S.  | 2w       | 2              |
+| Artist  | Sherman D.| 2w       | 8              |
+| Artist  | Jakob J.  | 2w       | 6              |
+| Artist  | Lillia A. | 2w       | 7              |
+| Artist  | Brandon J.| 2w       | 7              |
+| Manager | Scott K.  | 1e       | 9              |
+| Manager | Shirlee M.| 1e       | 3              |
+| Manager | Daria O.  | 2w       | 6              |
+| Engineer| Yancy I.  | null     | 0              |
+| Artist  | Oliver P. | null     | 0              |
+Buildings:
+| Building_name | Capacity |
+|---------------|----------|
+| 1e            | 24       |
+| 1w            | 32       |
+| 2e            | 16       |
+| 2w            | 20       |
+
+REQUIREMENTS:
+1.【复习】找到所有有雇员的办公室(buildings)名字
+  SELECT DISTINCT(Building)
+  FROM Employees
+  WHERE Name NOT NULL 
+    AND Building NOT NULL
+2.【复习】找到所有办公室里的所有角色（包含没有雇员的）,并做唯一输出(DISTINCT)
+  SELECT DISTINCT(A.Building_name),Role
+  FROM Buildings AS A
+  LEFT JOIN 
+  Employees AS B
+  ON A.Building_name = B.Building
+3.【难题】找到所有有雇员的办公室(buildings)和对应的容量
+  SELECT DISTINCT(A.Building_name),A.Capacity
+  FROM Buildings AS A
+  LEFT JOIN 
+  Employees AS B
+  ON A.Building_name = B.Building 
+  WHERE B.name NOT NULL
