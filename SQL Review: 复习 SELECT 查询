@@ -1,0 +1,45 @@
+TABLE:
+north_american_cities:
+| City                 | Country       | Population | Latitude   | Longitude   |
+|----------------------|---------------|------------|------------|-------------|
+| Guadalajara          | Mexico        | 1500800    | 20.659699  | -103.349609 |
+| Toronto              | Canada        | 2795060    | 43.653226  | -79.383184  |
+| Houston              | United States | 2195914    | 29.760427  | -95.369803  |
+| New York             | United States | 8405837    | 40.712784  | -74.005941  |
+| Philadelphia         | United States | 1553165    | 39.952584  | -75.165222  |
+| Havana               | Cuba          | 2106146    | 23.05407   | -82.345189  |
+| Mexico City          | Mexico        | 8555500    | 19.432608  | -99.133208  |
+| Phoenix              | United States | 1513367    | 33.448377  | -112.074037 |
+| Los Angeles          | United States | 3884307    | 34.052234  | -118.243685 |
+| Ecatepec de Morelos  | Mexico        | 1742000    | 19.601841  | -99.050674  |
+| Montreal             | Canada        | 1717767    | 45.501689  | -73.567256  |
+| Chicago              | United States | 2718782    | 41.878114  | -87.629798  |
+
+REQUIREMENTS:
+1.【复习】列出所有加拿大人的信息(包括所有字段)
+  SELECT *
+  FROM north_american_cities
+  WHERE Country = 'Canada'
+2.【复习】列出所有在Chicago西部的城市，从西到东排序(包括所有字段)
+  SELECT *
+  FROM north_american_cities
+  WHERE Longitude < 
+  (
+  SELECT Longitude
+  FROM north_american_cities
+  WHERE city ='Chicago'
+  )
+  ORDER BY Longitude 
+3.【复习】用人口数population排序,列出墨西哥Mexico最大的2个城市(包括所有字段)
+  SELECT *
+  FROM north_american_cities
+  WHERE Country = 'Mexico'
+  ORDER BY Population DESC
+  LIMIT 2
+4.【复习】列出美国United States人口3-4位的两个城市和他们的人口(包括所有字段)
+  SELECT *
+  FROM north_american_cities
+  WHERE Country = 'United States'
+  ORDER BY Population DESC
+  LIMIT 2
+  OFFSET 2
